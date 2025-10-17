@@ -2,7 +2,7 @@
     RewriteEngine On
 
     # Base path opsional (hapus kalau project ada di root domain)
-    RewriteBase /final/
+    RewriteBase /latihan_final/
 
     # Jangan rewrite kalau file/folder asli ada
     RewriteCond %{REQUEST_FILENAME} -f [OR]
