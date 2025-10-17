@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Base path opsional (hapus kalau project ada di root domain)
+    RewriteBase /final/
+
+    # Jangan rewrite kalau file/folder asli ada
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Semua request non-file => masuk ke index.php
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+    RewriteRule ^(app|config|vendor|logs|tests)/ - [F,L]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Proteksi file sensitif
+<FilesMatch "(^\.|composer\.(json|lock)|package\.json|yarn\.lock|phpunit\.xml|\.env)">
+    Require all denied
+</FilesMatch>
+
+# Blokir PHP di folder uploads (regex fleksibel)
+<FilesMatch "uploads/.*\.php$">
+    Require all denied
+</FilesMatch>
