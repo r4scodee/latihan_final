@@ -82,7 +82,7 @@ class ProductController extends Controller
 
         $id = $this->model->create($data);
 
-        $this->redirect('product');
+        $this->redirect('/');
     }
 
     // GET /products/edit/{id}
@@ -160,7 +160,7 @@ class ProductController extends Controller
 
         $this->model->update($id, $data);
 
-        $this->redirect('product');
+        $this->redirect('/');
     }
 
     // GET or POST /products/delete/{id}
@@ -185,7 +185,7 @@ class ProductController extends Controller
             @unlink(UPLOAD_DIR . $product['image']);
         }
 
-        $this->redirect('product');
+        $this->redirect('/');
     }
 
     // ===== helper untuk upload file image aman =====
