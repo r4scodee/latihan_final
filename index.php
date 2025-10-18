@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Autoload sederhana
 spl_autoload_register(function ($class) {
     $paths = [
         __DIR__ . '/app/library/',
@@ -17,19 +16,16 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Load config
 require_once __DIR__ . '/app/config/config.php';
 
 // Router sederhana
-$url = $_GET['url'] ?? 'product/index'; // Default ke ProductController@index
+$url = $_GET['url'] ?? 'product/index'; 
 $segments = explode('/', trim($url, '/'));
 
-// Controller, method, parameter
 $controllerName = ucfirst($segments[0]) . 'Controller';
 $method = $segments[1] ?? 'index';
 $params = array_slice($segments, 2);
 
-// Cek apakah file controller ada
 $controllerFile = __DIR__ . '/app/controller/' . $controllerName . '.php';
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
@@ -44,7 +40,7 @@ if (file_exists($controllerFile)) {
     }
 }
 
-// Kalau gak ada controller/method valid → tampilkan pesan sederhana
+//helper buat 404
 http_response_code(404);
 echo "<h1>404 - Halaman tidak ditemukan</h1>";
 echo "<p>Controller atau method yang kamu akses tidak ada.</p>";

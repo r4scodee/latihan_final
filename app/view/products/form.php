@@ -1,17 +1,14 @@
 <?php
-// Safety defaults biar tidak muncul warning
 $product = $product ?? [];
 $old = $old ?? [];
 $errors = $errors ?? [];
 $csrf = $csrf ?? '';
 
-// Detect apakah edit atau create
 $isEdit = ($action === 'update');
 $formAction = $isEdit
   ? BASE_URL . 'product/update/' . ($product['id'] ?? '')
   : BASE_URL . 'product/store';
 
-// Helper untuk ambil value lama
 $val = function ($key, $default = '') use ($product, $old, $isEdit) {
   if (!empty($old) && isset($old[$key]))
     return $old[$key];

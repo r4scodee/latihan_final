@@ -1,16 +1,10 @@
 <?php ob_start(); ?>
 <div class="top-header border-bottom bg-white shadow-sm">
   <div class="container-fluid">
-    <div class="d-flex align-items-center justify-content-between py-2 flex-wrap gap-2">
-
-      <div class="d-md-none">
-        <button class="btn btn-toggle" id="sidebarToggle" aria-label="Toggle sidebar" aria-expanded="false">
-          <i class="fas fa-bars fa-lg" aria-hidden="true"></i>
-        </button>
-      </div>
+    <div class="d-flex align-items-center justify-content-between py-2 flex-nowrap gap-2">
 
       <div class="ms-2 order-3 order-md-1 page-title">
-        <h3 class="fw-bold text-success d-flex align-items-center">
+        <h3 class="mb-0 fw-bold text-success d-flex align-items-center">
           <i class="fas fa-tags me-2"></i> Products Management
         </h3>
       </div>
@@ -18,7 +12,7 @@
       <div class="d-flex align-items-center justify-content-end gap-2 flex-shrink-0 order-1 order-md-2">
           <div class="btn-light d-flex align-items-center p-2">
             <img src="<?= BASE_URL ?>assets/img/logo/logo-dashboard-img.png" alt="admin" class="profile-avatar">
-            <div class="text-start d-none d-md-block me-2">
+            <div class="text-start d-md-block me-2">
               <div class="fw-bold" style="font-size: 16px">TANI DIGITAL</div>
               <small class="text-muted">Super Admin</small>
             </div>
@@ -72,7 +66,7 @@
             </div>
           </div>
           <div class="text-center text-md-end">
-            <a href="<?= BASE_URL ?>product/create" class="btn rounded-5 w-100 w-md-auto btn-add-product px-3">
+            <a href="<?= BASE_URL ?>product/create" class="btn rounded-5 w-100 w-md-auto btn-add-product px-3 py-2">
               <span class="fs-sm text-light">Tambah Produk</span>
             </a>
           </div>
@@ -100,8 +94,7 @@
               </tr>
             </thead>
             <tbody>
-              <?php $no = 1;
-              foreach ($products as $p): ?>
+              <?php $no = 1; foreach ($products as $p): ?>
                 <tr class="align-middle">
                   <td class="px-4 py-3 fw-medium"><?= $no++ ?></td>
                   <td class="px-4 py-3 fw-medium">
@@ -128,13 +121,11 @@
                     <?php endif; ?>
                   </td>
                   <td>
-                    <!-- Tombol edit -->
                     <div class="d-flex h-100 justify-content-center align-items-center gap-2">
                       <a href="<?= BASE_URL ?>product/edit/<?= htmlspecialchars($p['id']) ?>"
                         class="btn btn-sm btn-outline-success">
                         <i class="fi fi-tr-pen-field"></i>
                       </a>
-                      <!-- Tombol delete -->
                       <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-bs-toggle="modal"
                         data-bs-target="#deleteModal" data-id="<?= htmlspecialchars($p['id']) ?>">
                         <i class="fi fi-tr-trash-xmark"></i>
@@ -211,7 +202,6 @@
     const deleteForm = document.getElementById("deleteForm");
     const successOverlay = document.getElementById("successOverlay");
 
-    // isi action delete form sesuai id produk
     deleteButtons.forEach(btn => {
       btn.addEventListener("click", function () {
         const productId = this.getAttribute("data-id");
@@ -219,20 +209,16 @@
       });
     });
 
-    // intercept submit
     deleteForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // tahan submit dulu
+      e.preventDefault();
       const form = this;
 
-      // tutup modal
       const modalEl = document.getElementById("deleteModal");
       const modal = bootstrap.Modal.getInstance(modalEl);
       modal.hide();
 
-      // tampilkan overlay + animasi
       successOverlay.classList.remove("d-none");
 
-      // setelah 1.5 detik → submit beneran
       setTimeout(() => {
         form.submit();
       }, 1500);

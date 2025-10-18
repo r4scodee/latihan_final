@@ -104,11 +104,6 @@ body {
   border-radius: 50%;
 }
 
-/* Dashboard Content */
-.dashboard-content {
-  padding: 2rem;
-}
-
 .welcome-section {
   background: linear-gradient(135deg, #28a745, #0470e4);
   color: white;
@@ -143,71 +138,11 @@ body {
   animation: bounce 2s infinite;
 }
 
-/* Stats Cards */
-.stats-card {
-  background: var(--farm-white);
-  border-radius: 0.65rem;
-  padding: 1rem 1rem 1rem 1rem;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e9ecef;
-  height: 100%;
-}
-
-.stats-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  border: 1px;
-  background: #e9e9e9;
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.stats-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--farm-green);
-}
-
-.stats-label {
-  color: var(--farm-gray);
-  font-weight: 500;
-}
-
 .btn-farm {
   background-color: var(--farm-green) !important;
   border-color: var(--farm-green) !important;
   color: white !important;
   transition: all 0.2s ease;
-}
-
-.btn-toggle {
-  background: transparent;
-  border: none !important;
-  color: #2b6e2b;
-  padding: 6px 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.08s ease, color 0.15s ease;
-  line-height: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.btn-toggle:hover {
-  background: rgba(43, 110, 43, 0.06);
-  color: #1f5a1f;
-  border: none;
-}
-
-.btn-toggle .fa-lg {
-  font-size: 1.3rem;
 }
 
 /* Tombol Tambah Produk */
@@ -285,10 +220,6 @@ body {
   padding-left: 2.3rem;
 }
 
-#pageTitle {
-  display: none;
-}
-
 .delete-animation {
   animation: shake 0.5s ease-in-out;
 }
@@ -364,19 +295,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  #sidebarToggle {
-    margin-left: 0 !important;
-    justify-content: left !important;
-  }
-
-  .sidebar.show {
-    transform: translateX(0);
-  }
-
   .main-content {
     margin-left: 0;
   }
@@ -397,10 +315,6 @@ body {
   }
   .page-title {
     display: none;
-  }
-
-  .stats-card {
-    margin-bottom: 1rem;
   }
 }
 
