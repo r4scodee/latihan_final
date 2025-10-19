@@ -15,42 +15,50 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for tani_digital_db
-CREATE DATABASE IF NOT EXISTS `tani_digital_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tani_digital_db`;
+-- Dumping database structure for final_test_db
+CREATE DATABASE IF NOT EXISTS `final_test_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `final_test_db`;
 
--- Dumping structure for table tani_digital_db.products
+-- Dumping structure for table final_test_db.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` decimal(12,2) NOT NULL DEFAULT '0.00',
   `unit` enum('pcs','g','kg','ton') DEFAULT NULL,
+  `kodegudang` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT (now()),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `code` (`code`),
+  KEY `fk_products_warehouses` (`kodegudang`),
+  CONSTRAINT `fk_products_warehouses` FOREIGN KEY (`kodegudang`) REFERENCES `warehouses` (`kodegudang`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tani_digital_db.products: ~17 rows (approximately)
-INSERT INTO `products` (`id`, `code`, `name`, `price`, `unit`, `image`, `created_at`) VALUES
-	(1, 'PRD-001', 'Bawang Merah', 34500.00, 'kg', 'eacf06adc35b50bd_1758979031.jpg', '2025-09-09 07:37:03'),
-	(2, 'PRD-002', 'Kol Putih', 12750.00, 'pcs', '944e6343e9fdc009_1758979254.jpg', '2025-09-18 12:21:53'),
-	(3, 'PRD-003', 'Labu Kuning', 16065.00, 'pcs', 'eb888d9979a7db72_1758979315.jpg', '2025-09-18 12:42:55'),
-	(4, 'PRD-004', 'Bawang Putih', 25900.00, 'g', 'e87073a621da27b2_1758979404.jpg', '2025-09-21 12:36:15'),
-	(5, 'PRD-005', 'Kol Ungu', 24000.00, 'kg', '064f9ba05ca98350_1758979436.jpg', '2025-09-23 16:05:19'),
-	(6, 'PRD-006', 'Pare', 15150.00, 'g', 'dbe158529c1441c7_1758979464.jpg', '2025-09-23 16:05:39'),
-	(7, 'PRD-007', 'Jeruk Mandarin', 53500.00, 'kg', 'c7e486c5c0cffea8_1758979522.png', '2025-09-23 16:06:03'),
-	(8, 'PRD-008', 'Stroberi', 32000.00, 'kg', 'd58854f6dcf18678_1758979545.png', '2025-09-23 16:06:43'),
-	(9, 'PRD-09', 'Paprika', 45000.00, 'kg', '45f9f68bd66bd165_1758979569.png', '2025-09-23 16:07:15'),
-	(10, 'PRD-010', 'Peterseli', 10500.00, 'kg', 'aa6af7318c4d62d0_1758979596.png', '2025-09-27 12:22:09'),
-	(11, 'PRD-011', 'Jagung', 18000.00, 'kg', '4172f0e25639f233_1758979616.png', '2025-09-27 12:25:03'),
-	(12, 'PRD-012', 'Paket Sayur & Buah', 42500.00, 'pcs', '6ada48c995c01241_1758979692.png', '2025-09-27 13:28:10'),
-	(13, 'PRD-013', 'Tomat', 14100.00, 'kg', '2c3d3fa5883b6b46_1758979717.png', '2025-09-27 13:28:35'),
-	(14, 'PRD-014', 'Kacang Almond', 80000.00, 'g', '4e4773f1e560630b_1758979755.png', '2025-09-27 13:29:13'),
-	(15, 'PRD-015', 'Daun Teh', 23750.00, 'g', '16c73d0399c1cfcb_1758979778.png', '2025-09-27 13:29:35'),
-	(16, 'PRD-016', 'Jus Jeruk', 25000.00, 'pcs', '2e26a2fcc7009cc1_1758979800.png', '2025-09-27 13:29:57'),
-	(17, 'PRD-017', 'Jus Apel', 25000.00, 'pcs', '66c501a49626e99f_1758979822.png', '2025-09-27 13:30:19');
+-- Dumping data for table final_test_db.products: ~7 rows (approximately)
+INSERT INTO `products` (`id`, `code`, `name`, `price`, `unit`, `kodegudang`, `image`, `created_at`) VALUES
+	(1, 'PRD-001', 'Bawang Merah', 34500.00, 'kg', NULL, 'eacf06adc35b50bd_1758979031.jpg', '2025-09-09 07:37:03'),
+	(2, 'PRD-002', 'Kol Putih', 12750.00, 'pcs', NULL, '944e6343e9fdc009_1758979254.jpg', '2025-09-18 12:21:53'),
+	(3, 'PRD-003', 'Labu Kuning', 16065.00, 'pcs', NULL, 'eb888d9979a7db72_1758979315.jpg', '2025-09-18 12:42:55'),
+	(4, 'PRD-004', 'Bawang Putih', 25900.00, 'g', NULL, 'e87073a621da27b2_1758979404.jpg', '2025-09-21 12:36:15'),
+	(5, 'PRD-005', 'Kol Ungu', 24000.00, 'kg', NULL, '064f9ba05ca98350_1758979436.jpg', '2025-09-23 16:05:19'),
+	(6, 'PRD-006', 'Pare', 15150.00, 'g', NULL, 'dbe158529c1441c7_1758979464.jpg', '2025-09-23 16:05:39'),
+	(7, 'PRD-007', 'Jeruk Mandarin', 53500.00, 'kg', NULL, 'c7e486c5c0cffea8_1758979522.png', '2025-09-23 16:06:03');
+
+-- Dumping structure for table final_test_db.warehouses
+CREATE TABLE IF NOT EXISTS `warehouses` (
+  `kodegudang` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `namagudang` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `golongan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`kodegudang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table final_test_db.warehouses: ~2 rows (approximately)
+INSERT INTO `warehouses` (`kodegudang`, `namagudang`, `golongan`, `keterangan`, `created_at`) VALUES
+	('G01', 'Gudang Utama', 'Sayur', 'Sayuran', '2025-10-19 05:25:49'),
+	('G02', 'Gudang Cabang', 'Buah', 'Buah buahan', '2025-10-19 05:25:49');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
