@@ -181,48 +181,19 @@
           <table class="table table-hover mb-0 rounded-3 align-middle" id="productTable">
             <thead>
               <tr>
-                <th class="px-4 py-3 fs-lg">ID</th>
+                <th class="px-4 py-3 fs-lg">Aksi</th>
+                <th class="px-4 py-3 fs-lg">Gambar</th>
                 <th class="px-4 py-3 fs-lg">Kode</th>
                 <th class="px-4 py-3 fs-lg">Nama</th>
-                <th class="px-4 py-3 fs-lg">Harga</th>
-                <th class="px-4 py-3 fs-lg">Satuan</th>
                 <th class="px-4 py-3 fs-lg">Gudang</th>
-                <th class="px-4 py-3 fs-lg">Gambar</th>
-                <th class="px-4 py-3 fs-lg">Aksi</th>
+                <th class="px-4 py-3 fs-lg">Golongan</th>
+                <th class="px-4 py-3 fs-lg">Satuan</th>
+                <th class="px-4 py-3 fs-lg">Harga</th>
               </tr>
             </thead>
             <tbody>
-              <?php $no = 1; // Inisialisasi nomor urut untuk kolom ID ?>
               <?php foreach ($products as $p): ?> <!-- Looping semua produk dari array $products -->
                 <tr class="align-middle">
-                  <td class="px-4 py-3 fw-medium"><?= $no++ ?></td> <!-- Menampilkan nomor urut -->
-                  <td class="px-4 py-3 fw-medium">
-                    <span class="badge bg-primary badge-custom">
-                      <?= $this->e($p['code']) ?> <!-- Menampilkan kode produk, dengan sanitasi output -->
-                    </span>
-                  </td>
-                  <td class="px-4 py-3 fw-medium"><?= $this->e($p['name']) ?></td> <!-- Menampilkan nama produk -->
-                  <td class="px-4 py-3 fw-medium">
-                    Rp
-                    <?= number_format($p['price'], 0, ',', '.') ?> <!-- Format harga jadi format rupiah -->
-                  </td>
-                  <td class="px-4 py-3 fw-medium unit-col">
-                    <span class="badge bg-success badge-custom">
-                      <?= $this->e($p['unit']) ?> <!-- Menampilkan satuan produk -->
-                    </span>
-                  </td>
-                  <td class="px-4 py-3 fw-medium">
-                    <?= $p['namagudang'] ? htmlspecialchars($p['namagudang']) : '<span class="text-muted">-</span>' ?>
-                    <!-- Jika nama gudang ada, tampilkan; jika tidak, tampilkan strip -->
-                  </td>
-                  <td class="px-4 py-3 fw-medium">
-                    <?php if (!empty($p['image'])): ?> <!-- Jika gambar produk ada -->
-                      <img src="<?= UPLOAD_URL . htmlspecialchars($p['image']) ?>" alt="img" class="thumb img-thumbnail"
-                        width="60" />
-                    <?php else: ?> <!-- Jika tidak ada gambar -->
-                      <span class="text-muted">-</span>
-                    <?php endif; ?>
-                  </td>
                   <td>
                     <div class="d-flex h-100 justify-content-center align-items-center gap-2">
                       <a href="<?= BASE_URL ?>product/edit/<?= htmlspecialchars($p['id']) ?>"
@@ -235,6 +206,36 @@
                       </button>
                       <!-- Tombol hapus dengan modal konfirmasi, menyimpan ID produk ke atribut data-id -->
                     </div>
+                  </td>
+                  <td class="px-4 py-3 fw-medium">
+                    <?php if (!empty($p['image'])): ?> <!-- Jika gambar produk ada -->
+                      <img src="<?= UPLOAD_URL . htmlspecialchars($p['image']) ?>" alt="img" class="thumb img-thumbnail"
+                        width="60" />
+                    <?php else: ?> <!-- Jika tidak ada gambar -->
+                      <span class="text-muted">-</span>
+                    <?php endif; ?>
+                  </td>
+                  <td class="px-4 py-3 fw-medium">
+                    <span class="badge bg-primary badge-custom">
+                      <?= $this->e($p['code']) ?> <!-- Menampilkan kode produk, dengan sanitasi output -->
+                    </span>
+                  </td>
+                  <td class="px-4 py-3 fw-medium"><?= $this->e($p['name']) ?></td> <!-- Menampilkan nama produk -->
+                  <td class="px-4 py-3 fw-medium">
+                    <?= $p['namagudang'] ? htmlspecialchars($p['namagudang']) : '<span class="text-muted">-</span>' ?>
+                    <!-- Jika nama gudang ada, tampilkan; jika tidak, tampilkan strip -->
+                  </td>
+                  <td class="px-4 py-3 fw-medium">
+                    <?= $p['golongan'] ? htmlspecialchars($p['golongan']) : '<span class="text-muted">-</span>' ?>
+                    <!-- Jika golongan ada, tampilkan; jika tidak, tampilkan strip -->
+                  <td class="px-4 py-3 fw-medium unit-col">
+                    <span class="badge bg-success badge-custom">
+                      <?= $this->e($p['unit']) ?> <!-- Menampilkan satuan produk -->
+                    </span>
+                  </td>
+                  <td class="px-4 py-3 fw-medium">
+                    Rp
+                    <?= number_format($p['price'], 0, ',', '.') ?> <!-- Format harga jadi format rupiah -->
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -353,7 +354,7 @@
 
         document.getElementById("weatherBox").innerHTML = `
           <i class="fas fa-cloud-sun me-2"></i>
-          <span>Cuaca di Surabaya: ${kondisi}, ${suhu}°C</span>
+          <span>Cuaca hari ini: ${kondisi}, ${suhu}°C</span>
         `;
       } else {
         document.getElementById("weatherText").textContent = "Gagal memuat cuaca 😢";

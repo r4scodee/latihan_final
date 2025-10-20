@@ -13,11 +13,11 @@ class ProductModel
     public function all()
     {
         $stmt = $this->db->prepare("
-  SELECT p.*, w.namagudang, w.golongan
-  FROM products p
-  LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
-  ORDER BY p.id ASC
-");
+        SELECT p.*, w.namagudang, w.golongan
+        FROM products p
+        LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
+        ORDER BY p.id ASC
+        ");
         // Query untuk mengambil semua produk beserta info gudang (LEFT JOIN)
         $stmt->execute();
         // Eksekusi query
@@ -28,12 +28,12 @@ class ProductModel
     public function find($id)
     {
         $stmt = $this->db->prepare("
-  SELECT p.*, w.namagudang, w.golongan
-  FROM products p
-  LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
-  WHERE p.id = :id
-  LIMIT 1
-");
+        SELECT p.*, w.namagudang, w.golongan
+        FROM products p
+        LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
+        WHERE p.id = :id
+        LIMIT 1
+        ");
         // Query untuk mengambil 1 produk berdasarkan id
         $stmt->execute([':id' => $id]);
         // Bind parameter :id
