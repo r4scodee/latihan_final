@@ -215,15 +215,6 @@ body {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.footer-products {
-    width: 100%;
-    padding-left: 2.3rem;
-}
-
-.footer-dashboard {
-    padding-left: 2.3rem;
-}
-
 .delete-animation {
     animation: shake 0.5s ease-in-out;
 }

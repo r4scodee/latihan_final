@@ -211,34 +211,34 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
 
       <div class="col-lg-6 col-md-6">
         <label class="form-label">Kode Produk <span class="text-danger">*</span></label>
-        <input type="text" name="code" class="form-control" placeholder="Contoh: PRD-001"
-          value="<?= $this->e($val('code')) ?>" required>
+        <input type="text" name="kode" class="form-control" placeholder="Contoh: PRD-001"
+          value="<?= $this->e($val('kode')) ?>" required>
         <!-- Input untuk kode produk, wajib diisi, dan akan mengisi ulang jika ada data sebelumnya -->
       </div>
 
       <div class="col-lg-6 col-md-6">
         <label class="form-label">Nama Produk <span class="text-danger">*</span></label>
-        <input type="text" name="name" class="form-control" placeholder="Masukkan nama produk"
-          value="<?= $this->e($val('name')) ?>" required>
+        <input type="text" name="nama" class="form-control" placeholder="Masukkan nama produk"
+          value="<?= $this->e($val('nama')) ?>" required>
         <!-- Input nama produk, wajib diisi, dan support pengisian ulang jika ada data sebelumnya -->
       </div>
 
       <div class="col-lg-6 col-md-6">
         <label class="form-label">Harga</label>
-        <input type="text" name="price" id="price" class="form-control" placeholder="Rp 0"
-          value="<?= $this->e($val('price')) ?>">
+        <input type="text" name="harga" id="harga" class="form-control" placeholder="Rp 0"
+          value="<?= $this->e($val('harga')) ?>">
         <!-- Input untuk harga produk, tidak wajib tapi bisa diisi -->
       </div>
 
       <div class="col-lg-6 col-md-6">
         <label class="form-label">Satuan</label>
-        <select name="unit" class="form-select">
+        <select name="satuan" class="form-select">
           <!-- Dropdown untuk memilih satuan produk -->
           <option value="">Pilih satuan</option>
-          <option value="pcs" <?= $val('unit') == 'pcs' ? 'selected' : '' ?>>pcs</option>
-          <option value="g" <?= $val('unit') == 'g' ? 'selected' : '' ?>>gram (g)</option>
-          <option value="kg" <?= $val('unit') == 'kg' ? 'selected' : '' ?>>kilogram (kg)</option>
-          <option value="ton" <?= $val('unit') == 'ton' ? 'selected' : '' ?>>ton</option>
+          <option value="pcs" <?= $val('satuan') == 'pcs' ? 'selected' : '' ?>>pcs</option>
+          <option value="g" <?= $val('satuan') == 'g' ? 'selected' : '' ?>>gram (g)</option>
+          <option value="kg" <?= $val('satuan') == 'kg' ? 'selected' : '' ?>>kilogram (kg)</option>
+          <option value="ton" <?= $val('satuan') == 'ton' ? 'selected' : '' ?>>ton</option>
           <!-- Jika nilai satuan sesuai dengan yang dipilih sebelumnya, maka otomatis 'selected' -->
         </select>
       </div>
@@ -250,7 +250,7 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
           <?php
           $db = Database::getInstance()->getConnection();
           // Ambil koneksi database
-          $stmt = $db->query("SELECT kodegudang, namagudang FROM warehouses ORDER BY namagudang ASC");
+          $stmt = $db->query("SELECT kodegudang, namagudang FROM gudang ORDER BY namagudang ASC");
           // Query untuk mengambil data gudang
           $warehouses = $stmt->fetchAll();
           // Simpan semua hasil query ke dalam array

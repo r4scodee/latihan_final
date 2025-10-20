@@ -14,8 +14,8 @@ class ProductModel
     {
         $stmt = $this->db->prepare("
         SELECT p.*, w.namagudang, w.golongan
-        FROM products p
-        LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
+        FROM produk p
+        LEFT JOIN gudang w ON p.kodegudang = w.kodegudang
         ORDER BY p.id ASC
         ");
         // Query untuk mengambil semua produk beserta info gudang (LEFT JOIN)
@@ -29,8 +29,8 @@ class ProductModel
     {
         $stmt = $this->db->prepare("
         SELECT p.*, w.namagudang, w.golongan
-        FROM products p
-        LEFT JOIN warehouses w ON p.kodegudang = w.kodegudang
+        FROM produk p
+        LEFT JOIN gudang w ON p.kodegudang = w.kodegudang
         WHERE p.id = :id
         LIMIT 1
         ");
@@ -44,17 +44,17 @@ class ProductModel
     // Masukkan data produk baru (return inserted id)
     public function create($data)
     {
-        $sql = "INSERT INTO products (code, name, price, image, unit, kodegudang) 
-            VALUES (:code, :name, :price, :image, :unit, :kodegudang)";
+        $sql = "INSERT INTO produk (kode, nama, harga, image, satuan, kodegudang) 
+            VALUES (:kode, :nama, :harga, :image, :satuan, :kodegudang)";
         // Query insert produk
         $stmt = $this->db->prepare($sql);
         // Prepare query
         $stmt->execute([
-            ':code' => $data['code'],
-            ':name' => $data['name'],
-            ':price' => $data['price'],
+            ':kode' => $data['kode'],
+            ':nama' => $data['nama'],
+            ':harga' => $data['harga'],
             ':image' => $data['image'],
-            ':unit' => $data['unit'],
+            ':satuan' => $data['satuan'],
             ':kodegudang' => $data['kodegudang'] ?? null,
         ]);
         // Eksekusi query dengan bind parameter
@@ -71,18 +71,18 @@ class ProductModel
             return false;
         // Jika id atau data kosong, hentikan
 
-        $sql = "UPDATE products 
-            SET code = :code, name = :name, price = :price, image = :image, unit = :unit, kodegudang = :kodegudang
+        $sql = "UPDATE produk 
+            SET kode = :kode, nama = :nama, harga = :harga, image = :image, satuan = :satuan, kodegudang = :kodegudang
             WHERE id = :id";
         // Query update produk
         $stmt = $this->db->prepare($sql);
         // Prepare query
         return $stmt->execute([
-            ':code' => $data['code'],
-            ':name' => $data['name'],
-            ':price' => $data['price'],
+            ':kode' => $data['kode'],
+            ':nama' => $data['nama'],
+            ':harga' => $data['harga'],
             ':image' => $data['image'],
-            ':unit' => $data['unit'],
+            ':satuan' => $data['satuan'],
             ':kodegudang' => $data['kodegudang'] ?? null,
             ':id' => $id,
         ]);
@@ -92,7 +92,7 @@ class ProductModel
     // Hapus produk berdasarkan id
     public function delete($id)
     {
-        $stmt = $this->db->prepare("DELETE FROM products WHERE id = :id");
+        $stmt = $this->db->prepare("DELETE FROM produk WHERE id = :id");
         // Query hapus produk berdasarkan id
         return $stmt->execute([':id' => $id]);
         // Eksekusi query
@@ -102,13 +102,13 @@ class ProductModel
     public function existsByCode($code, $excludeId = null)
     {
         if ($excludeId) {
-            $stmt = $this->db->prepare("SELECT COUNT(*) FROM products WHERE code = :code AND id != :id");
+            $stmt = $this->db->prepare("SELECT COUNT(*) FROM produk WHERE kode = :kode AND id != :id");
             // Query cek duplikasi code kecuali id tertentu (untuk update)
-            $stmt->execute([':code' => $code, ':id' => $excludeId]);
+            $stmt->execute([':kode' => $code, ':id' => $excludeId]);
         } else {
-            $stmt = $this->db->prepare("SELECT COUNT(*) FROM products WHERE code = :code");
+            $stmt = $this->db->prepare("SELECT COUNT(*) FROM produk WHERE kode = :kode");
             // Query cek duplikasi code saat create
-            $stmt->execute([':code' => $code]);
+            $stmt->execute([':kode' => $code]);
         }
         return $stmt->fetchColumn() > 0;
         // Kembalikan true jika ada data, false jika tidak ada
