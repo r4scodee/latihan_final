@@ -1,5 +1,4 @@
 <?php ob_start(); ?>
-<!-- Memulai output buffering -->
 
 <style>
   .gradient-bg {
@@ -71,17 +70,15 @@
     }
   }
 </style>
+
 <div class="top-header border-bottom bg-white shadow-sm">
   <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between py-2 flex-nowrap gap-2">
-
       <div class="ms-2 order-3 order-md-1 page-title">
         <h3 class="mb-0 fw-bold text-success d-flex align-items-center">
           <i class="fas fa-seedling me-2"></i> Manajemen Produk
         </h3>
       </div>
-
-
       <div class="d-flex align-items-center justify-content-end gap-2 flex-shrink-0 order-1 order-md-2">
         <div class="btn-light d-flex align-items-center p-2">
           <img src="<?= BASE_URL ?>assets/img/logo/logo-dashboard-img.png" alt="admin" class="profile-avatar">
@@ -117,26 +114,22 @@
             <select id="filterUnit" class="form-select bg-white ps-5 rounded-5 border-0 shadow-sm">
               <option value="">Semua Satuan</option>
               <?php
-              // Tambahkan default satuan agar selalu muncul
-              $default_units = ['pcs', 'g', 'kg', 'ton']; // Satuan dasar bawaan
+              $default_units = ['pcs', 'g', 'kg', 'ton']; 
               
-              // Ambil semua satuan dari produk dan gabungkan dengan default, lalu buang yang duplikat
-              $unit = array_unique(array_merge($default_units, array_column($products, 'unit')));
+              $unit = array_unique(array_merge($default_units, array_column($products, 'satuan')));
 
               foreach ($unit as $s):
-                $s = strtolower(trim($s)); // Normalisasi satuan: lowercase + trim spasi
+                $s = strtolower(trim($s)); 
                 ?>
                 <option value="<?= $s ?>">
-                  <?= htmlspecialchars($s) ?> <!-- Tampilkan satuan ke dropdown dengan aman -->
+                  <?= htmlspecialchars($s) ?> 
                 </option>
               <?php endforeach; ?>
             </select>
-            <!-- Dropdown filter satuan produk -->
 
             <span class="position-absolute top-50 start-0 translate-middle-y ms-3">
               <i class="fas fa-balance-scale text-muted"></i>
             </span>
-            <!-- Icon timbangan di dalam input filter -->
           </div>
         </div>
 
@@ -147,13 +140,11 @@
             <div class="d-flex align-items-center">
               <i class="fas fa-box me-2 text-light"></i>
               <span>Total Produk: <span class="fw-bold"><?= count($products) ?></span></span>
-              <!-- Menampilkan jumlah total produk yang ada di tabel -->
             </div>
 
             <div class="d-flex align-items-center text-light" id="weatherBox">
               <i class="fas fa-cloud-sun me-2"></i>
               <span id="weatherText">Memuat cuaca...</span>
-              <!-- Placeholder teks cuaca yang akan diisi oleh JavaScript -->
             </div>
           </div>
 
@@ -164,9 +155,8 @@
               Tambah Produk
             </a>
           </div>
+
         </div>
-
-
       </div>
     </div>
   </div>
@@ -174,9 +164,9 @@
 
   <div class="card fade-in shadow-sm border-0">
     <div class="card-body pt-0 pb-4">
-      <?php if (empty($products)): ?> <!-- Mengecek apakah array $products kosong -->
-        <div class="alert alert-info">Belum ada produk.</div> <!-- Jika kosong, tampilkan pesan -->
-      <?php else: ?> <!-- Jika ada produk, lanjutkan ke tabel -->
+      <?php if (empty($products)): ?>
+        <div class="alert alert-info">Belum ada produk.</div> 
+      <?php else: ?> 
         <div class="table-responsive">
           <table class="table table-hover mb-0 rounded-3 align-middle" id="productTable">
             <thead>
@@ -204,7 +194,6 @@
                         data-bs-target="#deleteModal" data-id="<?= htmlspecialchars($p['id']) ?>">
                         <i class="fi fi-tr-trash-xmark"></i>
                       </button>
-                      <!-- Tombol hapus dengan modal konfirmasi, menyimpan ID produk ke atribut data-id -->
                     </div>
                   </td>
                   <td class="px-4 py-3 fw-medium">
@@ -217,10 +206,10 @@
                   </td>
                   <td class="px-4 py-3 fw-medium">
                     <span class="badge bg-primary badge-custom">
-                      <?= $this->e($p['code']) ?> <!-- Menampilkan kode produk, dengan sanitasi output -->
+                      <?= $this->e($p['kode']) ?> <!-- Menampilkan kode produk, dengan sanitasi output -->
                     </span>
                   </td>
-                  <td class="px-4 py-3 fw-medium"><?= $this->e($p['name']) ?></td> <!-- Menampilkan nama produk -->
+                  <td class="px-4 py-3 fw-medium"><?= $this->e($p['nama']) ?></td> <!-- Menampilkan nama produk -->
                   <td class="px-4 py-3 fw-medium">
                     <?= $p['namagudang'] ? htmlspecialchars($p['namagudang']) : '<span class="text-muted">-</span>' ?>
                     <!-- Jika nama gudang ada, tampilkan; jika tidak, tampilkan strip -->
@@ -230,12 +219,12 @@
                     <!-- Jika golongan ada, tampilkan; jika tidak, tampilkan strip -->
                   <td class="px-4 py-3 fw-medium unit-col">
                     <span class="badge bg-success badge-custom">
-                      <?= $this->e($p['unit']) ?> <!-- Menampilkan satuan produk -->
+                      <?= $this->e($p['satuan']) ?> <!-- Menampilkan satuan produk -->
                     </span>
                   </td>
                   <td class="px-4 py-3 fw-medium">
                     Rp
-                    <?= number_format($p['price'], 0, ',', '.') ?> <!-- Format harga jadi format rupiah -->
+                    <?= number_format($p['harga'], 0, ',', '.') ?> <!-- Format harga jadi format rupiah -->
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -260,7 +249,6 @@
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                   <form id="deleteForm" method="post" action="">
                     <input type="hidden" name="_csrf" value="<?= $this->generateCSRFToken() ?>" />
-                    <!-- Mengisi token CSRF untuk keamanan form -->
                     <button type="submit" class="btn btn-danger">Ya, Hapus</button>
                   </form>
                 </div>

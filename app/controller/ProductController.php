@@ -44,10 +44,10 @@ class ProductController extends Controller
         }
         // Memeriksa token CSRF untuk mencegah serangan
 
-        $code = trim($_POST['code'] ?? ''); 
-        $name = trim($_POST['name'] ?? ''); 
-        $price = trim($_POST['price'] ?? '0'); 
-        $unit = trim($_POST['unit'] ?? ''); 
+        $code = trim($_POST['kode'] ?? ''); 
+        $name = trim($_POST['nama'] ?? ''); 
+        $price = trim($_POST['harga'] ?? '0'); 
+        $unit = trim($_POST['satuan'] ?? ''); 
         $kodegudang = trim($_POST['kodegudang'] ?? null); 
         // Mengambil data dari form input dan membersihkan spasi
 
@@ -97,11 +97,11 @@ class ProductController extends Controller
         }
 
         $data = [
-            'code' => $code,
-            'name' => $name,
-            'price' => $price,
+            'kode' => $code,
+            'nama' => $name,
+            'harga' => $price,
             'image' => $uploadedFilename,
-            'unit' => $unit,
+            'satuan' => $unit,
             'kodegudang' => $kodegudang
         ];
         // Menyiapkan data untuk disimpan ke database
@@ -144,10 +144,10 @@ class ProductController extends Controller
             return;
         }
 
-        $code = trim($_POST['code'] ?? '');
-        $name = trim($_POST['name'] ?? '');
-        $price = trim($_POST['price'] ?? '0');
-        $unit = trim($_POST['unit'] ?? '');
+        $code = trim($_POST['kode'] ?? '');
+        $name = trim($_POST['nama'] ?? '');
+        $price = trim($_POST['harga'] ?? '0');
+        $unit = trim($_POST['satuan'] ?? '');
         $kodegudang = trim($_POST['kodegudang'] ?? null); 
         // Ambil data input dari form
 
@@ -195,11 +195,11 @@ class ProductController extends Controller
         }
 
         $data = [
-            'code' => $code,
-            'name' => $name,
-            'price' => $price,
+            'kode' => $code,
+            'nama' => $name,
+            'harga' => $price,
             'image' => $uploadedFilename,
-            'unit' => $unit,
+            'satuan' => $unit,
             'kodegudang' => $kodegudang
         ];
         // Siapkan data untuk update
