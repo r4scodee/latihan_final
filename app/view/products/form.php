@@ -250,7 +250,7 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
           <?php
           $db = Database::getInstance()->getConnection();
           // Ambil koneksi database
-          $stmt = $db->query("SELECT kodegudang, namagudang FROM warehouses ORDER BY namagudang ASC");
+          $stmt = $db->query("SELECT kodegudang, namagudang FROM gudang ORDER BY namagudang ASC");
           // Query untuk mengambil data gudang
           $warehouses = $stmt->fetchAll();
           // Simpan semua hasil query ke dalam array

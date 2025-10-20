@@ -44,7 +44,7 @@ class ProductModel
     // Masukkan data produk baru (return inserted id)
     public function create($data)
     {
-        $sql = "INSERT INTO produk (kode, nama, harga, iamge, satuan, kodegudang) 
+        $sql = "INSERT INTO produk (kode, nama, harga, image, satuan, kodegudang) 
             VALUES (:kode, :nama, :harga, :image, :satuan, :kodegudang)";
         // Query insert produk
         $stmt = $this->db->prepare($sql);

@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `harga` decimal(12,2) NOT NULL DEFAULT '0.00',
   `satuan` enum('pcs','g','kg','ton') DEFAULT NULL,
   `kodegudang` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `iamge` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT (now()),
   PRIMARY KEY (`id`),
   UNIQUE KEY `kode` (`kode`),
   KEY `fk_produk_gudang` (`kodegudang`),
   CONSTRAINT `fk_produk_gudang` FOREIGN KEY (`kodegudang`) 
-    REFERENCES `warehouses` (`kodegudang`) 
+    REFERENCES `gudang` (`kodegudang`) 
     ON DELETE SET NULL 
     ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
