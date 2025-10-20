@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               8.4.3 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.8.0.6908
+-- Versi server:                 8.4.3 - MySQL Community Server - GPL
+-- OS server:                    Win64
+-- Versi HeidiSQL:               12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping database structure for final_test_db
+-- Mengekspor struktur database untuk final_test_db
 CREATE DATABASE IF NOT EXISTS `final_test_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `final_test_db`;
 
@@ -30,34 +30,34 @@ CREATE TABLE IF NOT EXISTS `warehouses` (
   PRIMARY KEY (`kodegudang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data untuk tabel warehouses
+-- Mengekspor data untuk tabel warehouses
 INSERT INTO `warehouses` (`kodegudang`, `namagudang`, `golongan`, `keterangan`, `created_at`) VALUES
 ('G01', 'Gudang Utama', 'Sayur', 'Sayuran', '2025-10-19 05:25:49'),
-('G02', 'Gudang Cabang', 'Buah', 'Buah buahan', '2025-10-19 05:25:49');
+('G02', 'Gudang Cabang', 'Buah', 'Buah-buahan', '2025-10-19 05:25:49');
 
 -- --------------------------------------------------------
--- Baru buat tabel products
+-- Buat tabel produk
 -- --------------------------------------------------------
-CREATE TABLE IF NOT EXISTS `products` (
+CREATE TABLE IF NOT EXISTS `produk` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(50) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `unit` enum('pcs','g','kg','ton') DEFAULT NULL,
+  `kode` varchar(50) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `harga` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `satuan` enum('pcs','g','kg','ton') DEFAULT NULL,
   `kodegudang` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT (now()),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`),
-  KEY `fk_products_warehouses` (`kodegudang`),
-  CONSTRAINT `fk_products_warehouses` FOREIGN KEY (`kodegudang`) 
+  UNIQUE KEY `kode` (`kode`),
+  KEY `fk_produk_warehouses` (`kodegudang`),
+  CONSTRAINT `fk_produk_warehouses` FOREIGN KEY (`kodegudang`) 
     REFERENCES `warehouses` (`kodegudang`) 
     ON DELETE SET NULL 
     ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
--- Dumping data untuk tabel products
-INSERT INTO `products` (`id`, `code`, `name`, `price`, `unit`, `kodegudang`, `image`, `created_at`) VALUES
+-- Mengekspor data untuk tabel produk
+INSERT INTO `produk` (`id`, `kode`, `nama`, `harga`, `satuan`, `kodegudang`, `gambar`, `created_at`) VALUES
 (1, 'PRD-001', 'Bawang Merah', 34500.00, 'kg', NULL, 'eacf06adc35b50bd_1758979031.jpg', '2025-09-09 07:37:03'),
 (2, 'PRD-002', 'Kol Putih', 12750.00, 'pcs', NULL, '944e6343e9fdc009_1758979254.jpg', '2025-09-18 12:21:53'),
 (3, 'PRD-003', 'Labu Kuning', 16065.00, 'pcs', NULL, 'eb888d9979a7db72_1758979315.jpg', '2025-09-18 12:42:55'),

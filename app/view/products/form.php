@@ -275,7 +275,7 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
       </div>
 
       <div class="col-12 d-flex flex-wrap justify-content-end gap-3 mt-5">
-        <a href="<?= BASE_URL ?>product" class="btn btn-outline-secondary px-5 py-2 rounded-pill fw-semibold">
+        <a href="<?= BASE_URL ?>" class="btn btn-outline-secondary px-5 py-2 rounded-pill fw-semibold">
           <i class="fas fa-arrow-left me-2"></i> Kembali
         </a>
         <!-- Tombol untuk kembali ke halaman daftar produk -->
