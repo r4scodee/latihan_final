@@ -81,7 +81,6 @@
         </h3>
       </div>
 
-
       <div class="d-flex align-items-center justify-content-end gap-2 flex-shrink-0 order-1 order-md-2">
         <div class="btn-light d-flex align-items-center p-2">
           <img src="<?= BASE_URL ?>assets/img/logo/logo-dashboard-img.png" alt="admin" class="profile-avatar">
@@ -343,7 +342,7 @@
         const kondisiKode = data.current_weather.weathercode;
         const suhu = Math.round(data.current_weather.temperature);
 
-        let kondisi = "Cerahkan langit";
+        let kondisi = "Langit Cerah";
         if (kondisiKode === 0) kondisi = "Cerah";
         else if (kondisiKode === 1) kondisi = "Cerah berawan";
         else if (kondisiKode >= 2 && kondisiKode <= 3) kondisi = "Berawan";
