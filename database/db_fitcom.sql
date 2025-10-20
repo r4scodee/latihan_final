@@ -59,12 +59,7 @@ CREATE TABLE IF NOT EXISTS `produk` (
 -- Mengekspor data untuk tabel produk
 INSERT INTO `produk` (`id`, `kode`, `nama`, `harga`, `satuan`, `kodegudang`, `image`, `created_at`) VALUES
 (1, 'PRD-001', 'Bawang Merah', 34500.00, 'kg', NULL, 'eacf06adc35b50bd_1758979031.jpg', '2025-09-09 07:37:03'),
-(2, 'PRD-002', 'Kol Putih', 12750.00, 'pcs', NULL, '944e6343e9fdc009_1758979254.jpg', '2025-09-18 12:21:53'),
-(3, 'PRD-003', 'Labu Kuning', 16065.00, 'pcs', NULL, 'eb888d9979a7db72_1758979315.jpg', '2025-09-18 12:42:55'),
-(4, 'PRD-004', 'Bawang Putih', 25900.00, 'g', NULL, 'e87073a621da27b2_1758979404.jpg', '2025-09-21 12:36:15'),
-(5, 'PRD-005', 'Kol Ungu', 24000.00, 'kg', NULL, '064f9ba05ca98350_1758979436.jpg', '2025-09-23 16:05:19'),
-(6, 'PRD-006', 'Pare', 15150.00, 'g', NULL, 'dbe158529c1441c7_1758979464.jpg', '2025-09-23 16:05:39'),
-(7, 'PRD-007', 'Jeruk Mandarin', 53500.00, 'kg', NULL, 'c7e486c5c0cffea8_1758979522.png', '2025-09-23 16:06:03');
+(2, 'PRD-002', 'Kol Putih', 12750.00, 'pcs', NULL, '944e6343e9fdc009_1758979254.jpg', '2025-09-18 12:21:53');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -88,7 +88,7 @@ class ProductController extends Controller
             $this->view('products/form', [
                 'action' => 'store', 
                 'errors' => $errors, 
-                'old' => ['code' => $code, 'name' => $name, 'price' => $price, 'unit' => $unit], 
+                'old' => ['kode' => $code, 'nama' => $name, 'harga' => $price, 'satuan' => $unit], 
                 // Mengirim data lama agar form tidak kosong
                 'csrf' => $csrf
             ]);
@@ -187,7 +187,7 @@ class ProductController extends Controller
             $this->view('products/form', [
                 'action' => 'update',
                 'errors' => $errors,
-                'product' => ['id' => $id, 'code' => $code, 'name' => $name, 'price' => $price, 'unit' => $unit, 'image' => $uploadedFilename],
+                'product' => ['id' => $id, 'kode' => $code, 'nama' => $name, 'harga' => $price, 'satuan' => $unit, 'image' => $uploadedFilename],
                 'csrf' => $csrf
             ]);
             return; 
