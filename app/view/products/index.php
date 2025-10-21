@@ -114,15 +114,15 @@
             <select id="filterUnit" class="form-select bg-white ps-5 rounded-5 border-0 shadow-sm">
               <option value="">Semua Satuan</option>
               <?php
-              $default_units = ['pcs', 'g', 'kg', 'ton']; 
-              
+              $default_units = ['pcs', 'g', 'kg', 'ton'];
+
               $unit = array_unique(array_merge($default_units, array_column($products, 'satuan')));
 
               foreach ($unit as $s):
-                $s = strtolower(trim($s)); 
+                $s = strtolower(trim($s));
                 ?>
                 <option value="<?= $s ?>">
-                  <?= htmlspecialchars($s) ?> 
+                  <?= htmlspecialchars($s) ?>
                 </option>
               <?php endforeach; ?>
             </select>
@@ -165,8 +165,8 @@
   <div class="card fade-in shadow-sm border-0">
     <div class="card-body pt-0 pb-4">
       <?php if (empty($products)): ?>
-        <div class="alert alert-info">Belum ada produk.</div> 
-      <?php else: ?> 
+        <div class="alert alert-info">Belum ada produk.</div>
+      <?php else: ?>
         <div class="table-responsive">
           <table class="table table-hover mb-0 rounded-3 align-middle" id="productTable">
             <thead>
@@ -280,13 +280,14 @@
 
 </main>
 
-<footer class="bg-light text-dark py-4 mt-5 fixed-bottom">
-  <div class="container">
-    <p class="mb-1">
+<footer class="bg-light text-dark py-4 mt-5">
+  <div class="container text-center">
+    <p class="mb-1 mb-0">
       &copy; <?= date('Y') ?> Tani Digital. Semua Hak Dilindungi.
     </p>
   </div>
 </footer>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
