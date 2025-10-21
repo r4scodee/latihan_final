@@ -21,7 +21,7 @@ spl_autoload_register(function ($class) {
 require_once __DIR__ . '/app/config/config.php'; // Load konfigurasi global (misal BASE_URL, DB, dll)
 
 // Routing sederhana berdasarkan URL parameter 'url'
-// Jika tidak ada 'url', default ke 'product/index'
+// Jika tidak ada 'url', default ke 'product/index'1
 $url = $_GET['url'] ?? 'product/index';
 
 // Pisah URL menjadi segmen, contoh: product/edit/1 jadi ['product','edit','1']

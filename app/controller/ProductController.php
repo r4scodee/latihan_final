@@ -26,7 +26,7 @@ class ProductController extends Controller
             // Data produk dikirim ke view
         ]);
     }
-
+    
     // GET /products/create (tampilkan form create)
     public function create()
     {
@@ -39,6 +39,9 @@ class ProductController extends Controller
     // POST /products/store (proses simpan)
     public function store()
     {
+        $id = $this->model->create($data); 
+        // Memanggil method create pada model untuk menyimpan data
+        
         if (!$this->verifyCSRFToken($_POST['_csrf'] ?? '')) {
             die('CSRF token tidak valid.');
         }
@@ -49,7 +52,7 @@ class ProductController extends Controller
         $price = trim($_POST['harga'] ?? '0'); 
         $unit = trim($_POST['satuan'] ?? ''); 
         $kodegudang = trim($_POST['kodegudang'] ?? null); 
-        // Mengambil data dari form input dan membersihkan spasi
+        // Mengambil data dari form input dan membersihkan spasi1
 
         $errors = []; 
         // Array untuk menyimpan error validasi
@@ -82,6 +85,16 @@ class ProductController extends Controller
             }
         }
 
+        $data = [
+            'kode' => $code,
+            'nama' => $name,
+            'harga' => $price,
+            'image' => $uploadedFilename,
+            'satuan' => $unit,
+            'kodegudang' => $kodegudang
+        ];
+        // Menyiapkan data untuk disimpan ke database
+
         if (!empty($errors)) {
             $csrf = $this->generateCSRFToken(); 
             // Buat token CSRF baru
@@ -96,19 +109,7 @@ class ProductController extends Controller
             // Jika ada error, kembalikan ke form
         }
 
-        $data = [
-            'kode' => $code,
-            'nama' => $name,
-            'harga' => $price,
-            'image' => $uploadedFilename,
-            'satuan' => $unit,
-            'kodegudang' => $kodegudang
-        ];
-        // Menyiapkan data untuk disimpan ke database
-
-        $id = $this->model->create($data); 
-        // Memanggil method create pada model untuk menyimpan data
-
+        
         $this->redirect('/'); 
         // Setelah berhasil, redirect ke halaman utama
     }

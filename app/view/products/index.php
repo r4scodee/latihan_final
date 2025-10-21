@@ -80,7 +80,7 @@
         </h3>
       </div>
       <div class="d-flex align-items-center justify-content-end gap-2 flex-shrink-0 order-1 order-md-2">
-        <div class="btn-light d-flex align-items-center p-2">
+        <div class="d-flex align-items-center p-2">
           <img src="<?= BASE_URL ?>assets/img/logo/logo-dashboard-img.png" alt="admin" class="profile-avatar">
           <div class="text-start d-md-block me-2">
             <div class="fw-bold" style="font-size: 16px">TANI DIGITAL</div>
