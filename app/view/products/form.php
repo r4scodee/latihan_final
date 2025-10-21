@@ -225,7 +225,7 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
 
       <div class="col-lg-6 col-md-6">
         <label class="form-label">Harga</label>
-        <input type="text" name="harga" id="harga" class="form-control" placeholder="Rp 0"
+        <input type="number" name="harga" id="harga" class="form-control" placeholder="Rp 0"
           value="<?= $this->e($val('harga')) ?>">
         <!-- Input untuk harga produk, diformat otomatis ke rupiah -->
       </div>

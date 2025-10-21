@@ -91,7 +91,6 @@ class ProductController extends Controller
             return;
         }
 
-        // ✅ simpan ke database di sini, setelah $data terdefinisi
         $this->model->create($data);
 
         $this->redirect('/');
