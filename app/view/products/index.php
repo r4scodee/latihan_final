@@ -280,7 +280,7 @@
 
 </main>
 
-<footer class="bg-light text-dark py-4 mt-5">
+<footer class="bg-light text-dark py-4 mt-5 fixed-bottom">
   <div class="container text-center">
     <p class="mb-1 mb-0">
       &copy; <?= date('Y') ?> Tani Digital. Semua Hak Dilindungi.
