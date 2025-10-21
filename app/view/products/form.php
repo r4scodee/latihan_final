@@ -307,19 +307,4 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
       // Tampilkan gambar yang dipilih sebelum upload (preview)
     }
   });
-
-  const hargaInput = document.getElementById('harga');
-
-  hargaInput.addEventListener('input', function (e) {
-    let value = this.value.replace(/[^\d]/g, ''); // Hapus semua karakter non-digit
-    if (value) {
-      this.value = formatRupiah(value);
-    } else {
-      this.value = '';
-    }
-  });
-
-  function formatRupiah(angka) {
-    return 'Rp ' + angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  }
 </script>
