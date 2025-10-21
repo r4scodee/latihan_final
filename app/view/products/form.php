@@ -292,56 +292,19 @@ $val = function ($key, $default = '') use ($product, $old, $isEdit) {
 
 
 <script>
-  // --- Preview gambar sebelum upload ---
   const imageInput = document.getElementById('image');
+  // Ambil elemen input gambar
   const preview = document.getElementById('preview');
+  // Ambil elemen preview gambar
 
   imageInput.addEventListener('change', function () {
     const file = this.files[0];
+    // Ambil file gambar yang dipilih
     if (file) {
       preview.style.display = 'block';
+      // Tampilkan elemen preview
       preview.src = URL.createObjectURL(file);
-    } else {
-      preview.style.display = 'none';
-      preview.src = '#';
-    }
-  });
-
-  // --- Format harga ke rupiah tapi tetap kirim angka mentah ke PHP ---
-  const hargaInput = document.getElementById('harga');
-
-  // Simpan angka asli sebelum diformat (supaya user bisa edit angka)
-  let lastRawValue = '';
-
-  hargaInput.addEventListener('input', function (e) {
-    // Ambil hanya digit dari input
-    let raw = this.value.replace(/[^\d]/g, '');
-
-    // Jika tidak ada angka, kosongkan
-    if (!raw) {
-      this.value = '';
-      lastRawValue = '';
-      return;
-    }
-
-    // Simpan angka mentah
-    lastRawValue = raw;
-
-    // Format ke tampilan "Rp 800.000"
-    this.value = formatRupiah(raw);
-  });
-
-  // Fungsi format angka ke format rupiah
-  function formatRupiah(angka) {
-    return 'Rp ' + angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  }
-
-  // --- Bersihkan format sebelum dikirim ke server ---
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function () {
-    if (hargaInput.value) {
-      // Ambil angka mentah sebelum dikirim
-      hargaInput.value = lastRawValue;
+      // Tampilkan gambar yang dipilih sebelum upload (preview)
     }
   });
 </script>
