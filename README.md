@@ -28,40 +28,21 @@ webFitcom2025_SkinfaDev_smkinformatikaalirsyad/
 │   ├── config/
 │   │   └── config.php
 │   ├── controller/
-│   │   ├── DashboardController.php
-│   │   ├── ErrorController.php
-│   │   ├── HomeController.php
-│   │   ├── LoginController.php
-│   │   ├── ProductController.php
-│   │   └── ReportController.php
+│   │   └── ProductController.php
 │   ├── library/
-│   │   ├── font/
 │   │   ├── Controller.php
-│   │   ├── Database.php
-│   │   └── fpdf.php
+│   │   └── Database.php
 │   ├── model/
 │   │   └── ProductModel.php
 │   └── view/
-│       ├── auth/
-│       │   └── login.php
-│       ├── dashboard/
-│       │   └── index.php
-│       ├── errors/
-│       │   └── 404.php
-│       ├── home/
-│       │   └── index.php
 │       ├── layouts/
 │       │   └── layout.php
-│       ├── products/
-│       │   ├── form.php
-│       │   └── index.php
-│       └── report/
+│       └── products/
+|           ├── form.php
 │           └── index.php
 │
 ├── assets/
 │   ├── css/
-│   ├── fonts/
-│   ├── icons/
 │   ├── img/
 │   └── js/
 │
@@ -99,17 +80,6 @@ Jika project dalam bentuk `.zip`, extract ke folder:
 1. Pastikan Apache & MySQL aktif di Laragon/XAMPP
 2. Akses project melalui browser:
 `http://localhost/webFitcom2025_SkinfaDev_smkinformatikaalirsyad/`
-
-3. Untuk masuk ke dashboard, gunakan URL:
-`http://localhost/webFitcom2025_SkinfaDev_smkinformatikaalirsyad/dashboard`
-
-### 4️⃣ Login Default
-
-- Gunakan akun berikut untuk login ke dashboard:
- - Username: admintanidigital
- - Password: cirebon2025-admin
-
-### Catatan
 
 - Pastikan Apache & MySQL sudah aktif di Laragon/XAMPP
 - Jika routing tidak jalan, cek file .htaccess apakah sudah aktif di root
