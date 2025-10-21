@@ -1,87 +1,73 @@
 <?php
-require_once __DIR__ . '/../library/Controller.php'; 
+require_once __DIR__ . '/../library/Controller.php';
 // Memanggil file Controller utama agar bisa menggunakan class Controller
 
 class ProductController extends Controller
 {
-    private $model; 
+    private $model;
     // Property untuk menyimpan instance model Product
 
     public function __construct()
     {
-        $this->model = new ProductModel(); 
+        $this->model = new ProductModel();
         // Membuat instance ProductModel saat controller dibuat
     }
     // GET /products (list semua produk)
     public function index()
     {
-        $products = $this->model->all(); 
+        $products = $this->model->all();
         // Mengambil semua data produk dari database melalui model
         $this->view('products/index', [
-            'title' => 'Table Management Products - Tani Digital', 
+            'title' => 'Table Management Products - Tani Digital',
             // Judul halaman
-            'active' => 'products', 
+            'active' => 'products',
             // Menandai menu aktif
-            'products' => $products 
+            'products' => $products
             // Data produk dikirim ke view
         ]);
     }
-    
+
     // GET /products/create (tampilkan form create)
     public function create()
     {
-        $csrf = $this->generateCSRFToken(); 
+        $csrf = $this->generateCSRFToken();
         // Membuat token CSRF untuk keamanan form
-        $this->view('products/form', ['action' => 'store', 'csrf' => $csrf]); 
+        $this->view('products/form', ['action' => 'store', 'csrf' => $csrf]);
         // Menampilkan form tambah produk
     }
 
     // POST /products/store (proses simpan)
     public function store()
     {
-        $id = $this->model->create($data); 
-        // Memanggil method create pada model untuk menyimpan data
-        
         if (!$this->verifyCSRFToken($_POST['_csrf'] ?? '')) {
             die('CSRF token tidak valid.');
         }
-        // Memeriksa token CSRF untuk mencegah serangan
 
-        $code = trim($_POST['kode'] ?? ''); 
-        $name = trim($_POST['nama'] ?? ''); 
-        $price = trim($_POST['harga'] ?? '0'); 
-        $unit = trim($_POST['satuan'] ?? ''); 
-        $kodegudang = trim($_POST['kodegudang'] ?? null); 
-        // Mengambil data dari form input dan membersihkan spasi1
+        $code = trim($_POST['kode'] ?? '');
+        $name = trim($_POST['nama'] ?? '');
+        $price = trim($_POST['harga'] ?? '0');
+        $unit = trim($_POST['satuan'] ?? '');
+        $kodegudang = trim($_POST['kodegudang'] ?? null);
 
-        $errors = []; 
-        // Array untuk menyimpan error validasi
+        $errors = [];
 
         if ($code === '')
-            $errors[] = "Kode produk wajib diisi."; 
-            // Validasi kode produk
+            $errors[] = "Kode produk wajib diisi.";
         if ($name === '')
-            $errors[] = "Nama produk wajib diisi."; 
-            // Validasi nama produk
+            $errors[] = "Nama produk wajib diisi.";
         if (!is_numeric($price) || $price < 0)
-            $errors[] = "Harga harus angka >= 0."; 
-            // Validasi harga produk
+            $errors[] = "Harga harus angka >= 0.";
 
         if ($this->model->existsByCode($code))
-            $errors[] = "Kode produk sudah digunakan."; 
-            // Mengecek apakah kode produk sudah ada di database
+            $errors[] = "Kode produk sudah digunakan.";
 
-        $uploadedFilename = null; 
-        // Variabel untuk menyimpan nama file yang diupload
+        $uploadedFilename = null;
         if (!empty($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
-            $uploadResult = $this->handleUpload($_FILES['image']); 
-            // Memproses upload gambar jika ada
+            $uploadResult = $this->handleUpload($_FILES['image']);
             if ($uploadResult['success']) {
-                $uploadedFilename = $uploadResult['filename']; 
-                // Menyimpan nama file yang berhasil diupload
+                $uploadedFilename = $uploadResult['filename'];
             } else {
-                $errors[] = $uploadResult['error']; 
-                // Menyimpan error upload jika gagal
+                $errors[] = $uploadResult['error'];
             }
         }
 
@@ -93,40 +79,38 @@ class ProductController extends Controller
             'satuan' => $unit,
             'kodegudang' => $kodegudang
         ];
-        // Menyiapkan data untuk disimpan ke database
 
         if (!empty($errors)) {
-            $csrf = $this->generateCSRFToken(); 
-            // Buat token CSRF baru
+            $csrf = $this->generateCSRFToken();
             $this->view('products/form', [
-                'action' => 'store', 
-                'errors' => $errors, 
-                'old' => ['kode' => $code, 'nama' => $name, 'harga' => $price, 'satuan' => $unit], 
-                // Mengirim data lama agar form tidak kosong
+                'action' => 'store',
+                'errors' => $errors,
+                'old' => ['kode' => $code, 'nama' => $name, 'harga' => $price, 'satuan' => $unit],
                 'csrf' => $csrf
             ]);
-            return; 
-            // Jika ada error, kembalikan ke form
+            return;
         }
 
-        
-        $this->redirect('/'); 
-        // Setelah berhasil, redirect ke halaman utama
+        // ✅ simpan ke database di sini, setelah $data terdefinisi
+        $this->model->create($data);
+
+        $this->redirect('/');
     }
+
 
     // GET /products/edit/{id}
     public function edit($id)
     {
-        $product = $this->model->find($id); 
+        $product = $this->model->find($id);
         // Mengambil data produk berdasarkan id
         if (!$product) {
-            echo "Produk tidak ditemukan."; 
-            return; 
+            echo "Produk tidak ditemukan.";
+            return;
             // Jika produk tidak ada, tampilkan pesan
         }
-        $csrf = $this->generateCSRFToken(); 
+        $csrf = $this->generateCSRFToken();
         // Buat token CSRF
-        $this->view('products/form', ['action' => 'update', 'product' => $product, 'csrf' => $csrf]); 
+        $this->view('products/form', ['action' => 'update', 'product' => $product, 'csrf' => $csrf]);
         // Tampilkan form edit dengan data produk
     }
 
@@ -138,7 +122,7 @@ class ProductController extends Controller
         }
         // Validasi CSRF token
 
-        $product = $this->model->find($id); 
+        $product = $this->model->find($id);
         // Ambil data produk yang akan diupdate
         if (!$product) {
             echo "Produk tidak ditemukan.";
@@ -149,7 +133,7 @@ class ProductController extends Controller
         $name = trim($_POST['nama'] ?? '');
         $price = trim($_POST['harga'] ?? '0');
         $unit = trim($_POST['satuan'] ?? '');
-        $kodegudang = trim($_POST['kodegudang'] ?? null); 
+        $kodegudang = trim($_POST['kodegudang'] ?? null);
         // Ambil data input dari form
 
         $errors = [];
@@ -158,27 +142,27 @@ class ProductController extends Controller
         if ($name === '')
             $errors[] = "Nama produk wajib diisi.";
         if (!is_numeric($price) || $price < 0)
-            $errors[] = "Harga harus angka >= 0."; 
+            $errors[] = "Harga harus angka >= 0.";
         // Validasi input form
 
         if ($this->model->existsByCode($code, $id))
-            $errors[] = "Kode produk sudah digunakan oleh produk lain."; 
+            $errors[] = "Kode produk sudah digunakan oleh produk lain.";
         // Cek duplikasi kode produk selain dirinya sendiri
 
-        $uploadedFilename = $product['image']; 
+        $uploadedFilename = $product['image'];
         // Default file image tetap sama
         if (!empty($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
-            $uploadResult = $this->handleUpload($_FILES['image']); 
+            $uploadResult = $this->handleUpload($_FILES['image']);
             // Proses upload image baru
             if ($uploadResult['success']) {
-                $uploadedFilename = $uploadResult['filename']; 
+                $uploadedFilename = $uploadResult['filename'];
                 // Ganti nama file baru
                 if (!empty($product['image']) && is_file(UPLOAD_DIR . $product['image'])) {
-                    @unlink(UPLOAD_DIR . $product['image']); 
+                    @unlink(UPLOAD_DIR . $product['image']);
                     // Hapus file lama jika ada
                 }
             } else {
-                $errors[] = $uploadResult['error']; 
+                $errors[] = $uploadResult['error'];
                 // Simpan error jika upload gagal
             }
         }
@@ -191,7 +175,7 @@ class ProductController extends Controller
                 'product' => ['id' => $id, 'kode' => $code, 'nama' => $name, 'harga' => $price, 'satuan' => $unit, 'image' => $uploadedFilename],
                 'csrf' => $csrf
             ]);
-            return; 
+            return;
             // Kembalikan ke form jika ada error
         }
 
@@ -205,10 +189,10 @@ class ProductController extends Controller
         ];
         // Siapkan data untuk update
 
-        $this->model->update($id, $data); 
+        $this->model->update($id, $data);
         // Panggil method update di model
 
-        $this->redirect('/'); 
+        $this->redirect('/');
         // Redirect ke halaman utama
     }
 
@@ -224,32 +208,32 @@ class ProductController extends Controller
         }
         // Validasi CSRF token
 
-        $product = $this->model->find($id); 
+        $product = $this->model->find($id);
         if (!$product) {
             echo "Produk tidak ditemukan.";
             return;
         }
         // Pastikan produk ada sebelum dihapus
 
-        $this->model->delete($id); 
+        $this->model->delete($id);
         // Hapus data produk dari database
 
         if (!empty($product['image']) && is_file(UPLOAD_DIR . $product['image'])) {
-            @unlink(UPLOAD_DIR . $product['image']); 
+            @unlink(UPLOAD_DIR . $product['image']);
             // Hapus file gambar dari server jika ada
         }
 
-        $this->redirect('/'); 
+        $this->redirect('/');
         // Redirect ke halaman utama
     }
 
     // ===== helper untuk upload file image aman =====
     private function handleUpload($file)
     {
-        $maxSize = 2 * 1024 * 1024; 
+        $maxSize = 2 * 1024 * 1024;
         // Maksimal ukuran file 2MB
 
-        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp']; 
+        $allowedExt = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         // Ekstensi file yang diperbolehkan
 
         if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -262,8 +246,8 @@ class ProductController extends Controller
         }
         // Validasi ukuran file
 
-        $finfo = new finfo(FILEINFO_MIME_TYPE); 
-        $mime = $finfo->file($file['tmp_name']); 
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime = $finfo->file($file['tmp_name']);
         // Mengecek MIME type file
         $validMimes = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
 
@@ -272,10 +256,10 @@ class ProductController extends Controller
         }
         // Validasi tipe file
 
-        $ext = $validMimes[$mime]; 
+        $ext = $validMimes[$mime];
         // Ambil ekstensi yang sesuai MIME type
 
-        $newName = bin2hex(random_bytes(8)) . '_' . time() . '.' . $ext; 
+        $newName = bin2hex(random_bytes(8)) . '_' . time() . '.' . $ext;
         // Membuat nama file unik
 
         if (!is_dir(UPLOAD_DIR)) {
@@ -285,16 +269,16 @@ class ProductController extends Controller
         }
         // Pastikan folder upload ada, buat jika belum
 
-        $target = UPLOAD_DIR . $newName; 
+        $target = UPLOAD_DIR . $newName;
         if (!move_uploaded_file($file['tmp_name'], $target)) {
             return ['success' => false, 'error' => 'Gagal menyimpan file.'];
         }
         // Pindahkan file ke folder upload
 
-        @chmod($target, 0644); 
+        @chmod($target, 0644);
         // Set permission file agar bisa dibaca
 
-        return ['success' => true, 'filename' => $newName]; 
+        return ['success' => true, 'filename' => $newName];
         // Kembalikan status sukses dan nama file
     }
 }
