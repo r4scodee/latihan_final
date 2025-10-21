@@ -1,9 +1,9 @@
 <?php
 // Konfigurasi database
-define('DB_HOST', '127.0.0.1');      // Host database, di sini menggunakan localhost
-define('DB_NAME', 'final_test_db');  // Nama database yang akan dipakai
-define('DB_USER', 'root');           // Username untuk akses database
-define('DB_PASS', '');               // Password untuk akses database, kosong berarti tanpa password
+define('DB_HOST', '103.163.138.166');      // Host database, di sini menggunakan localhost
+define('DB_NAME', 'smkinfor_lombafitcom2025');  // Nama database yang akan dipakai
+define('DB_USER', 'smkinfor_root_lombafitcom2025');           // Username untuk akses database
+define('DB_PASS', 'RDzQdsPF9NwV9wd');               // Password untuk akses database, kosong berarti tanpa password
 
 // BASE_URL
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';

@@ -1,0 +1,72 @@
+[21-Oct-2025 00:22:59 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:22:59 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:03 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:52 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:55 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25
+[21-Oct-2025 00:23:56 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php:25
+Stack trace:
+#0 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(25): PDO->__construct()
+#1 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php(32): Database->__construct()
+#2 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/model/ProductModel.php(9): Database::getInstance()
+#3 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/controller/ProductController.php(12): ProductModel->__construct()
+#4 /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/index.php(44): ProductController->__construct()
+#5 {main}
+  thrown in /home/smkinfor/lombafitcom.smkinformatika-crbn.sch.id/app/library/Database.php on line 25

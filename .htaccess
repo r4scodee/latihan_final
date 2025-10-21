@@ -1,35 +1,20 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    # Nyalakan modul rewrite (URL rewriting)
-
-    RewriteBase /latihan_final/
-    # Tentukan base path proyek di URL (penting untuk environment lokal/subfolder)
-
+    RewriteBase /
+    
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
-    # Jika request mengarah ke file atau folder yang benar-benar ada di server, jangan rewrite (biarkan Apache tangani)
 
     RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-    # Semua request yang tidak cocok dengan file/folder akan diteruskan ke index.php
-    # Parameter setelah slash disimpan di `$_GET['url']`, dipakai oleh router
-    # QSA: query string yang dikirim tetap diteruskan (misalnya ?page=2)
-
-    RewriteRule ^(app|config|vendor|logs|tests)/ - [F,L]
-    # Blok akses langsung ke folder sensitif, balikin HTTP 403 Forbidden
 </IfModule>
 
 Options -Indexes
-# Nonaktifkan directory listing, jadi kalau tidak ada index file di folder, isi folder tidak akan ditampilkan
 
 <FilesMatch "(^\.|composer\.(json|lock)|package\.json|yarn\.lock|phpunit\.xml|\.env)">
     Require all denied
 </FilesMatch>
-# Blok file konfigurasi penting seperti .env, composer.json, dan file hidden lain
-# Agar tidak bisa diakses publik (security best practice)
 
 <FilesMatch "uploads/.*\.php$">
     Require all denied
 </FilesMatch>
-# Cegah eksekusi file PHP di dalam folder uploads/
-# Ini penting untuk mencegah backdoor upload (exploit via file upload)
