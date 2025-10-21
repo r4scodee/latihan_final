@@ -284,7 +284,6 @@
   <div class="container">
     <p class="mb-1">
       &copy; <?= date('Y') ?> Tani Digital. Semua Hak Dilindungi.
-
     </p>
   </div>
 </footer>

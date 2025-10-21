@@ -313,19 +313,7 @@ body {
     .main-content {
         margin-left: 0;
     }
-    .footer-products {
-        margin-left: 0;
-        padding-left: 0;
-        width: 100%;
-        font-size: 14px;
-        text-align: center;
-    }
-    .footer-dashboard {
-        width: 100%;
-        text-align: center;
-        padding-left: 0;
-        font-size: 14px;
-    }
+
     .page-title {
         display: none;
     }
